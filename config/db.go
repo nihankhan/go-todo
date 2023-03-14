@@ -3,6 +3,7 @@ package config
 import (
 	"database/sql"
 	"fmt"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -54,6 +55,13 @@ func CreateDB() error {
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	// Connection pool
+
+	db.SetMaxIdleConns(10)
+	db.SetMaxOpenConns(100)
+	db.SetConnMaxLifetime(time.Hour)
+
 	err = db.Ping()
 
 	if err != nil {

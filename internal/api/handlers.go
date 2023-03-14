@@ -22,7 +22,7 @@ var (
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	stmt, err := db.Query(`SELECT * FROM todos`)
+	stmt, err := db.Query(`SELECT * FROM gotodo.todos`)
 
 	if err != nil {
 		fmt.Println(err)
